@@ -24,6 +24,11 @@ import random
 import string
 import matplotlib.pyplot as plt
 
+api_key = st.text_input('Enter Open AI API Key')
+openai.api_key = api_key
+#st.write('You entered:', openai.api_key)
+OPENAI_API_KEY = api_key
+
 currentPath=os.path.dirname(os.path.realpath(__file__))
 
 def load_or_create_index(filename):
@@ -88,10 +93,7 @@ def get_text():
 #show feedback content from uploaded file
 #getFeedback(uploaded_file)
 #st.set_page_config(layout='wide')
-api_key = st.text_input('Enter Open AI API Key')
-openai.api_key = api_key
-#st.write('You entered:', openai.api_key)
-OPENAI_API_KEY=api_key
+
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:

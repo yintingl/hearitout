@@ -96,6 +96,7 @@ OPENAI_API_KEY=api_key
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
     uploadedfilename=save_uploadedfile(uploaded_file)
+    st.write(uploadedfilename)
     with st.spinner('Preparing summary and Q&A...'):
         index = load_or_create_index(uploadedfilename)
         with st.expander(" Summary"):

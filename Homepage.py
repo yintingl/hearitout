@@ -32,9 +32,7 @@ openai.api_key = api_key
 currentPath=os.path.dirname(os.path.realpath(__file__))
 
 def load_or_create_index(filename):
-    st.write("does it work?")
     llm_predictor = LLMPredictor(llm=OpenAI(openai_api_key=api_key, temperature=0, model_name="text-davinci-003",max_tokens=512))
-    st.write("hello")
     documents = SimpleDirectoryReader(currentPath+'/tempDir', recursive=True).load_data()
     index = GPTSimpleVectorIndex(documents,llm_predictor=llm_predictor)
     #index.save_to_disk(currentPath+'\Feedback_index.json')

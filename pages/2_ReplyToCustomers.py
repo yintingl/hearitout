@@ -38,9 +38,8 @@ with st.form(key="form_email"):
 
 
         st.markdown("____")
-        st.markdown("# Send Your Email")
         st.markdown("You can press the Generate Email Button again if you're unhappy with the model's output")
-        st.form_submit_button(label='Send')
+        #st.form_submit_button(label='Send')
         
         #st.subheader("Otherwise:")
         #st.text(output)

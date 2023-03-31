@@ -30,3 +30,6 @@ plotly==5.13.0
 tenacity==8.0.0
 seaborn==0.11.2
 streamlit==1.18.0
+streamlit_chat
+llama_index
+langchain

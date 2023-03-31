@@ -27,13 +27,13 @@ import matplotlib.pyplot as plt
 api_key = st.text_input('Enter Open AI API Key')
 openai.api_key = api_key
 #st.write('You entered:', openai.api_key)
-OPENAI_API_KEY = api_key
+#OPENAI_API_KEY = api_key
 
 currentPath=os.path.dirname(os.path.realpath(__file__))
 
 def load_or_create_index(filename):
     st.write("does it work?")
-    llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="text-davinci-003",max_tokens=512))
+    llm_predictor = LLMPredictor(llm=OpenAI(openai_api_key=api_key, temperature=0, model_name="text-davinci-003",max_tokens=512))
     st.write("hello")
     documents = SimpleDirectoryReader(currentPath+'/tempDir', recursive=True).load_data()
     index = GPTSimpleVectorIndex(documents,llm_predictor=llm_predictor)

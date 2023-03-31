@@ -28,14 +28,14 @@ currentPath=os.path.dirname(os.path.realpath(__file__))
 
 def load_or_create_index(filename):
     llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="text-davinci-003",max_tokens=512))
-    documents = SimpleDirectoryReader(currentPath+'\\tempDir', recursive=True).load_data()
+    documents = SimpleDirectoryReader(currentPath+'/tempDir', recursive=True).load_data()
     index = GPTSimpleVectorIndex(documents,llm_predictor=llm_predictor)
     #index.save_to_disk(currentPath+'\Feedback_index.json')
     #index.save_to_disk(currentPath+'\Feedback_list_index.json')
     return index
 
 def save_uploadedfile(uploadedfile):
-     with open(os.path.join(currentPath+'\\tempDir',uploadedfile.name),"wb") as f:
+     with open(os.path.join(currentPath+'/tempDir',uploadedfile.name),"wb") as f:
         f.write(uploadedfile.getbuffer())
         st.success("file uploaded!")
         return uploaded_file.name

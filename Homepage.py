@@ -102,6 +102,9 @@ if uploaded_file is not None:
     with st.spinner('Preparing summary and Q&A...'):
         index = load_or_create_index(uploadedfilename)
         
+    with st.expander(" Summary"):
+        output=query_index("Summarize 5 areas of improvement and explain why")
+        st.write(output)
 
     #Creating the chatbot interface
     st.title("ask me anything about your dataset")
@@ -128,9 +131,6 @@ if uploaded_file is not None:
             message(st.session_state["generated"][i], key=str(i))
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
 
-    with st.expander(" Summary"):
-            output=query_index("Summarize 5 areas of improvement and explain why")
-            st.write(output)
 
 
 

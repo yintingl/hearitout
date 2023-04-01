@@ -99,10 +99,10 @@ uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
     uploadedfilename=save_uploadedfile(uploaded_file)
     with st.spinner('Preparing summary and Q&A...'):
-        index = load_or_create_index(uploadedfilename)
+        index_doc = load_or_create_index(uploadedfilename)
         
     with st.expander(" Summary"):
-        output=query_index("Summarize 5 areas of improvement, explain why and provide percentage of reviews about each area of improvement",index)
+        output=query_index("Summarize 5 areas of improvement, explain why and provide percentage of reviews about each area of improvement",index_doc)
         st.write(output)
 
     #Creating the chatbot interface
@@ -119,7 +119,7 @@ if uploaded_file is not None:
 
     if user_input:
     #output = generate_response(user_input)
-        output=query_index(user_input,index)
+        output=query_index(user_input,index_doc)
     # store the output 
         st.session_state.past.append(user_input)
         st.session_state.generated.append(output)

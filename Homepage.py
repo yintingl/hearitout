@@ -68,7 +68,7 @@ def getFeedback(uploaded_file):
         st.stop()
         st.rerun()
 
-def query_index(prompt):
+def query_index(prompt,index):
     response = index.query(prompt)
     return str(response)
     #return dataDict
@@ -102,7 +102,7 @@ if uploaded_file is not None:
         index = load_or_create_index(uploadedfilename)
         
     with st.expander(" Summary"):
-        output=query_index("Summarize 5 areas of improvement, explain why and provide percentage of reviews about each area of improvement")
+        output=query_index("Summarize 5 areas of improvement, explain why and provide percentage of reviews about each area of improvement",index)
         st.write(output)
 
     #Creating the chatbot interface
@@ -119,7 +119,7 @@ if uploaded_file is not None:
 
     if user_input:
     #output = generate_response(user_input)
-        output=query_index(user_input)
+        output=query_index(user_input,index)
     # store the output 
         st.session_state.past.append(user_input)
         st.session_state.generated.append(output)

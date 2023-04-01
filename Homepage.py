@@ -106,10 +106,9 @@ if uploaded_file is not None:
     with st.spinner('Preparing summary and Q&A...'):
         index_doc = load_or_create_index(uploadedfilename)
         #index_doc = load_or_create_index(uplo)
-        
-    with st.expander(" Summary"):
-        output=query_index("Summarize 5 areas of improvement, explain why and provide percentage of reviews about each area of improvement",index_doc)
-        st.write(output)
+        with st.expander(" Summary"):
+            output=query_index("Summarize 5 areas of improvement, explain why and provide percentage of reviews about each area of improvement",index_doc)
+            st.write(output)
 
     #Creating the chatbot interface
     st.title("ask me anything about your dataset")

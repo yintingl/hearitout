@@ -68,8 +68,8 @@ def getFeedback(uploaded_file):
         st.stop()
         st.rerun()
 
-def query_index(prompt,index):
-    response = index.query(prompt)
+def query_index(prompt,index123):
+    response = index123.query(prompt)
     return str(response)
     #return dataDict
 

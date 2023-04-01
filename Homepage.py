@@ -103,7 +103,7 @@ if uploaded_file is not None:
         index = load_or_create_index(uploadedfilename)
         
     with st.expander(" Summary"):
-        output=query_index("Summarize 5 areas of improvement and explain why")
+        output=query_index("Summarize 5 areas of improvement, explain why and provide percentage of reviews about each area of improvement")
         st.write(output)
 
     #Creating the chatbot interface

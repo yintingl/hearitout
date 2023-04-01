@@ -15,7 +15,8 @@ from llama_index import (
     LLMPredictor,
     PromptHelper,
     GPTListIndex,
-    GPTTreeIndex
+    GPTTreeIndex,
+    download_loader
 )
 from langchain import OpenAI
 import openai
@@ -32,8 +33,12 @@ openai.api_key = api_key
 currentPath=os.path.dirname(os.path.realpath(__file__))
 
 def load_or_create_index(filename):
+#def load_or_create_index(file):
     llm_predictor = LLMPredictor(llm=OpenAI(openai_api_key=api_key, temperature=0, model_name="text-davinci-003",max_tokens=512))
-    documents = SimpleDirectoryReader(currentPath+'/tempDir', recursive=True).load_data()
+    documents = SimpleDirectoryReader(input_files=[(currentPath+'/tempDir/'+filename)], recursive=True).load_data()
+    #SimpleCSVReader = download_loader("SimpleCSVReader")
+    #loader=SimpleCSVReader()
+    #documents = loader.load_data(file)
     index = GPTSimpleVectorIndex(documents,llm_predictor=llm_predictor)
     #index.save_to_disk(currentPath+'\Feedback_index.json')
     #index.save_to_disk(currentPath+'\Feedback_list_index.json')
@@ -100,6 +105,7 @@ if uploaded_file is not None:
     uploadedfilename=save_uploadedfile(uploaded_file)
     with st.spinner('Preparing summary and Q&A...'):
         index_doc = load_or_create_index(uploadedfilename)
+        #index_doc = load_or_create_index(uplo)
         
     with st.expander(" Summary"):
         output=query_index("Summarize 5 areas of improvement, explain why and provide percentage of reviews about each area of improvement",index_doc)
